@@ -1,26 +1,290 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fbf9f4;
+  --foreground: #251a13;
+
+  /* Azar Chicken theme: whiter cream, lighter burgundy accent */
+  --color-crimson-50: #f8ece7;
+  --color-crimson-100: #f0d2c5;
+  --color-crimson-400: #c15945;
+  --color-crimson-500: #ac4433;
+  --color-crimson-600: #973a29;
+  --color-crimson-700: #7e3025;
+  --color-crimson-900: #491c17;
+
+  --color-ink-900: #251a13;
+  --color-ink-800: #362619;
+  --color-ink-700: #4a3626;
+
+  --color-cream-100: #fbf9f4;
+  --color-cream-200: #f3ecdc;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-display: var(--font-bebas), "Arial Narrow", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-crimson-50: var(--color-crimson-50);
+  --color-crimson-100: var(--color-crimson-100);
+  --color-crimson-400: var(--color-crimson-400);
+  --color-crimson-500: var(--color-crimson-500);
+  --color-crimson-600: var(--color-crimson-600);
+  --color-crimson-700: var(--color-crimson-700);
+  --color-crimson-900: var(--color-crimson-900);
+  --color-ink-900: var(--color-ink-900);
+  --color-ink-800: var(--color-ink-800);
+  --color-ink-700: var(--color-ink-700);
+  --color-cream-100: var(--color-cream-100);
+  --color-cream-200: var(--color-cream-200);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Surface treatments */
+.header-surface {
+  background: rgba(247, 241, 227, 0.92);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+.nav-surface {
+  background: rgba(247, 241, 227, 0.96);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+/* Cards are separated by soft shadow + radius, not hard borders. */
+.card-surface {
+  background: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(37, 26, 19, 0.05),
+    0 10px 24px -16px rgba(37, 26, 19, 0.22);
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-surface:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 2px rgba(37, 26, 19, 0.06),
+    0 16px 30px -16px rgba(37, 26, 19, 0.28);
+}
+
+.card-surface:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.script-signature {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+}
+
+/* Double hairline, diner-menu-style divider used under section headings. */
+.menu-divider {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.menu-divider::before,
+.menu-divider::after {
+  content: "";
+  flex: none;
+}
+
+.menu-rule {
+  height: 3px;
+  width: 46px;
+  background: var(--color-crimson-600);
+  border-radius: 2px;
+}
+
+.menu-rule-thin {
+  height: 1px;
+  flex: 1;
+  background: repeating-linear-gradient(
+    to right,
+    rgba(37, 26, 19, 0.18) 0,
+    rgba(37, 26, 19, 0.18) 4px,
+    transparent 4px,
+    transparent 9px
+  );
+}
+
+/* Small stamp-style badge for Popular / Best Seller labels */
+.diner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  border: 1.5px solid var(--color-crimson-600);
+  color: var(--color-crimson-600);
+  background: var(--color-cream-100);
+}
+
+/* Sliding underline used behind the active category label */
+.nav-underline {
+  position: absolute;
+  bottom: -1px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--color-crimson-600);
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+}
+
+.reveal-in {
+  animation: reveal 560ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #ece0c6 25%, #f4ead4 37%, #ece0c6 63%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pop-in {
+  animation: popIn 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes slideFromRight {
+  from {
+    transform: translateX(28px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-28px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-from-right {
+  animation: slideFromRight 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.slide-from-left {
+  animation: slideFromLeft 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes crossfade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.crossfade {
+  animation: crossfade 500ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
