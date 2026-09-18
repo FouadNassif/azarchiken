@@ -1,0 +1,35 @@
+[
+  {
+    "id": "lebanese-burger-deal",
+    "slug": "lebanese-burger-deal",
+    "title": "2 Lebanese Burgers",
+    "description": "Two Lebanese burgers, great for sharing.",
+    "image": "/images/menu/lebanese-burger.jpg",
+    "itemIds": ["lebanese-burger"],
+    "price": 450000,
+    "sortOrder": 1,
+    "available": true
+  },
+  {
+    "id": "crispy-burger-deal",
+    "slug": "crispy-burger-deal",
+    "title": "2 Crispy Burgers",
+    "description": "Two crispy chicken burgers, great for sharing.",
+    "image": "/images/menu/crispy-burger.jpg",
+    "itemIds": ["crispy-burger"],
+    "price": 450000,
+    "sortOrder": 2,
+    "available": true
+  },
+  {
+    "id": "shawarma-deal",
+    "slug": "shawarma-deal",
+    "title": "2 Small Shawarma",
+    "description": "Two small chicken shawarma sandwiches.",
+    "image": "/images/menu/shawarma-sandwich.jpg",
+    "itemIds": ["shawarma-sandwich"],
+    "price": 400000,
+    "sortOrder": 3,
+    "available": true
+  }
+]

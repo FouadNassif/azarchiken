@@ -1,43 +1,5 @@
-// Single source of truth for restaurant/business info.
-// Change the WhatsApp number, hours, address, etc. here only.
+import restaurantJson from "./json/restaurant.json";
 
-export const restaurantConfig = {
-  name: "Azar Chicken",
-  tagline: "Since 1999",
-  description:
-    "Home of broasted, gaz, and charcoal-grilled chicken, sandwiches, shawarma, and tawook — made fresh, served fast.",
-
-  /** Digits only, with country code, no + or spaces (e.g. 9611234567). */
-  whatsappNumber: "96181388221",
-
-  phone: "+961 81 388 221",
-  email: "info@azarchicken.com",
-
-  address: "Main Street, Beirut, Lebanon",
-  mapUrl: "https://maps.google.com/?q=Azar+Chicken",
-
-  social: {
-    instagram: "https://instagram.com/azarchicken",
-    facebook: "https://facebook.com/azarchicken",
-  },
-
-  openingHours: [
-    { day: "Monday - Thursday", hours: "11:00 AM - 12:00 AM" },
-    { day: "Friday - Saturday", hours: "11:00 AM - 1:00 AM" },
-    { day: "Sunday", hours: "12:00 PM - 12:00 AM" },
-  ],
-
-  about: {
-    story:
-      "Since 1999, Azar Chicken has been serving the neighborhood signature broasted and crispy chicken made with a family recipe passed down for generations. What started as a small kitchen has grown into a local favorite for chicken and burger lovers.",
-    offerings: [
-      "Broasted, gaz & fahem chicken",
-      "Sandwiches & wraps",
-      "Shawarma & tawook",
-      "Fresh-cut fries",
-      "Dine-in platters",
-    ],
-  },
-
-  currency: "LL",
-} as const;
+// The actual data lives in ./json/restaurant.json — this file just re-exports
+// it with a stable name. Edit the JSON file directly, or use the /admin panel.
+export const restaurantConfig = restaurantJson;
