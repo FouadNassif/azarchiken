@@ -12,12 +12,21 @@
     "facebook": "https://facebook.com/azarchicken"
   },
   "openingHours": [
-    { "day": "Monday - Thursday", "hours": "11:00 AM - 12:00 AM" },
-    { "day": "Friday - Saturday", "hours": "11:00 AM - 1:00 AM" },
-    { "day": "Sunday", "hours": "12:00 PM - 12:00 AM" }
+    {
+      "day": "Monday - Thursday",
+      "hours": "11:00 AM - 12:00 AM"
+    },
+    {
+      "day": "Friday - Saturday",
+      "hours": "11:00 AM - 1:00 AM"
+    },
+    {
+      "day": "Sunday",
+      "hours": "10:00 PM - 12:00 AM"
+    }
   ],
   "about": {
-    "story": "Since 1999, Azar Chicken has been serving the neighborhood signature broasted and crispy chicken made with a family recipe passed down for generations. What started as a small kitchen has grown into a local favorite for chicken and burger lovers.",
+    "story": "Since 1999, Azar Chicken has been serving the neighborhood signature broasted and crispy chicken made with a family recipe passed down for generations. What started as a small kitchen has grown into a local favorite for chicken and burger lovers. TEST",
     "offerings": [
       "Broasted, gaz & fahem chicken",
       "Sandwiches & wraps",
