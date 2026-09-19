@@ -79,6 +79,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       return [...prev, { ...input, lineId }];
     });
     setIsDrawerOpen(true);
+
+    fetch("/api/track/cart-add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ itemId: input.refId, kind: input.kind }),
+      keepalive: true,
+    }).catch(() => {
+      // Analytics failing silently should never break adding to cart.
+    });
   }, []);
 
   const removeLine = useCallback((lineId: string) => {

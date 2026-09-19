@@ -20,7 +20,15 @@ export function SearchFilterBar({
     if (el) setIndicator({ left: el.offsetLeft, width: el.offsetWidth });
   }, [activeCategory, categories]);
 
+  const isFirstRender = useRef(true);
   useEffect(() => {
+    // Skip on mount — scrollIntoView would otherwise drag the whole page down
+    // to reveal the pill row (it starts below the fold, under the hero),
+    // which looks like the page loaded scrolled to the menu instead of the top.
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     const el = buttonRefs.current.get(activeCategory);
     el?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
   }, [activeCategory]);

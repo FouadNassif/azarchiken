@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, Bebas_Neue } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { Header } from "@/components/layout/Header";
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <BottomNav />
           <CartDrawer />
         </CartProvider>
+        <Analytics />
       </body>
     </html>
   );

@@ -4,19 +4,15 @@ import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 import { CartLineItem } from "@/components/cart/CartLineItem";
 import { OrderSummaryModal } from "@/components/cart/OrderSummaryModal";
+import { LocationConsentModal } from "@/components/cart/LocationConsentModal";
 import { formatPrice } from "@/lib/format";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 export function CartDrawer() {
   const { lines, count, total, isDrawerOpen, closeDrawer } = useCart();
   const [showSummary, setShowSummary] = useState(false);
+  const [showLocationPrompt, setShowLocationPrompt] = useState(false);
 
   if (!isDrawerOpen) return null;
-
-  function handleWhatsApp() {
-    const url = buildWhatsAppUrl(lines);
-    window.open(url, "_blank", "noopener,noreferrer");
-  }
 
   return (
     <>
@@ -66,7 +62,7 @@ export function CartDrawer() {
               <div className="flex flex-col gap-2.5">
                 <button
                   type="button"
-                  onClick={handleWhatsApp}
+                  onClick={() => setShowLocationPrompt(true)}
                   className="flex w-full items-center justify-center gap-2 rounded-md bg-crimson-600 py-3.5 text-xs font-bold uppercase tracking-[0.15em] text-white shadow-md transition-transform active:scale-[0.98]"
                 >
                   Send Order via WhatsApp
@@ -97,6 +93,9 @@ export function CartDrawer() {
       </div>
 
       {showSummary && <OrderSummaryModal lines={lines} onClose={() => setShowSummary(false)} />}
+      {showLocationPrompt && (
+        <LocationConsentModal lines={lines} onClose={() => setShowLocationPrompt(false)} />
+      )}
     </>
   );
 }

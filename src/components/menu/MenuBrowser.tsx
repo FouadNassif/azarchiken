@@ -33,6 +33,16 @@ export function MenuBrowser({
     const q = new URLSearchParams(window.location.search).get("q");
     // eslint-disable-next-line react-hooks/set-state-in-effect
     if (q) setQuery(q);
+    if (q && q.trim().length >= 2) {
+      fetch("/api/track/search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: q }),
+        keepalive: true,
+      }).catch(() => {
+        // Analytics failing silently should never break search.
+      });
+    }
   }, []);
 
   const tabIds = useMemo(() => ["all", ...categories.map((c) => c.id)], [categories]);

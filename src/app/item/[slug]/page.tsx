@@ -6,6 +6,7 @@ import { HotSellerBadge, BestBuyBadge } from "@/components/ui/Badge";
 import { ItemAddToCart } from "@/components/menu/ItemAddToCart";
 import { ItemImageHeader } from "@/components/menu/ItemImageHeader";
 import { RelatedItems } from "@/components/menu/RelatedItems";
+import { TrackItemView } from "@/components/menu/TrackItemView";
 
 export function generateStaticParams() {
   return menuItems.map((i) => ({ slug: i.slug }));
@@ -27,6 +28,7 @@ export default async function ItemPage({
 
   return (
     <div className="mx-auto max-w-2xl pb-4">
+      <TrackItemView itemId={item.id} />
       <ItemImageHeader
         src={item.image}
         alt={item.title}
